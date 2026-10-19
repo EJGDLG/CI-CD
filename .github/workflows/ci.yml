@@ -1,0 +1,31 @@
+name: CI
+
+# Corre las pruebas en cada Pull Request hacia main y en cada push a main.
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  tests:
+    # Este nombre es el que se selecciona como "status check" obligatorio
+    # en la regla de protección de la rama main.
+    name: Pruebas unitarias
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v5
+
+      - name: Configurar Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Ejecutar pruebas unitarias
+        run: pytest
