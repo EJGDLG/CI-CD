@@ -1,0 +1,10 @@
+[project]
+name = "mathlib"
+version = "1.0.0"
+description = "Librería de matemática básica para la Sesión Práctica #7 (Continuous Integration)"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-v"
